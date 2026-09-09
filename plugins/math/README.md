@@ -4,30 +4,35 @@ A fullscreen [Omarchy](https://omarchy.org) overlay for Omarchy Kids: short,
 leveled math practice for ages 5–12, plus a JSON assessment contract the
 Kids AI Tutor can use for an initial aptitude check.
 
-This plugin lives at `plugins/math` in the
+This plugin is developed at `plugins/math` in the
 [omarchy-kids-ai-tutor](https://github.com/mikeg0/omarchy-kids-ai-tutor)
-monorepo. It is **not** the AI Tutor. It is a separate shell plugin
-(`omarchykids.math`) that the tutor will summon alongside other skill
-plugins.
+monorepo. It is **not** the AI Tutor. The installable listing repo is
+[mikeg0/omarchy-kids-math](https://github.com/mikeg0/omarchy-kids-math).
 
 It follows the Quattro plugin contract (`overlay` + `bar-widget`), uses the
 active theme tokens, and does not start a second Quickshell process.
 
+**Dependencies:** Omarchy Quattro (`omarchy-shell` / Quickshell). No extra
+packages. License: MIT.
+
 ## Install
 
-Omarchy’s `plugin add` expects `manifest.json` at a git root. Install this
-sub-plugin by copying the folder:
+```sh
+omarchy plugin add https://github.com/mikeg0/omarchy-kids-math.git --enable
+```
+
+That clones the plugin into `~/.config/omarchy/plugins/omarchykids.math/`
+and places a `1+1` launcher on the left of the bar. Plugins run unsandboxed
+inside `omarchy-shell`; read the QML before enabling if you omit `--enable`.
+
+From this monorepo checkout (no inner symlinks — Omarchy rejects those):
 
 ```sh
-git clone git@github.com:mikeg0/omarchy-kids-ai-tutor.git
-cp -a omarchy-kids-ai-tutor/plugins/math ~/.config/omarchy/plugins/omarchykids.math
+cp -a plugins/math ~/.config/omarchy/plugins/omarchykids.math
 omarchy plugin validate ~/.config/omarchy/plugins/omarchykids.math
 omarchy-shell shell rescanPlugins
 omarchy plugin enable omarchykids.math
 ```
-
-That enables the overlay and places a `1+1` launcher on the left of the bar.
-Plugins run unsandboxed inside `omarchy-shell`; read the QML before enabling.
 
 Confirm:
 
