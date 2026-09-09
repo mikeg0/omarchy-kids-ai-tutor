@@ -42,7 +42,8 @@ Plugins run unsandboxed inside `omarchy-shell`. Read the QML before enabling.
 ## Shared assessment contract
 
 Each skill plugin should accept a summon payload (`mode`, `learnerId`,
-`level`, `resultFile`, `doneFile`, …) and write a result object with at least:
+`level`, …) and expose the result only over shell IPC (`lastResult`), with
+at least:
 
 - `pluginId`, `schemaVersion`, `mode`, `status`
 - `recommendedLevel`
